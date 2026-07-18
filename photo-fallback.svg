@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#164e63"/></linearGradient></defs>
+<rect width="800" height="500" fill="url(#g)"/>
+<circle cx="650" cy="95" r="48" fill="#facc15"/>
+<path d="M0 360C130 230 230 290 330 190c85-85 175-30 245 35 75 70 135 60 225 15v260H0Z" fill="#d1fae5"/>
+<path d="M0 410c130-70 235-48 345-5 130 52 274 15 455-65v160H0Z" fill="#67e8f9" opacity=".72"/>
+<text x="42" y="70" font-family="system-ui,sans-serif" font-size="34" fill="white" font-weight="700">Madeira Companion</text>
+<text x="42" y="112" font-family="system-ui,sans-serif" font-size="22" fill="white">Photo en cours de chargement</text>
+</svg>
