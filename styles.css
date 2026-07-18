@@ -87,3 +87,71 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.9rem}
   #map{height:440px}
   .map-section .section-head{align-items:center}
 }
+
+
+/* Correctif Leaflet pour Safari/iPhone */
+.leaflet-container{
+  position:relative;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:pan-x pan-y;
+}
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box{
+  position:absolute;
+  left:0;
+  top:0;
+}
+.leaflet-tile{
+  visibility:hidden;
+}
+.leaflet-tile-loaded{
+  visibility:inherit;
+}
+.leaflet-container img.leaflet-tile{
+  max-width:none !important;
+  max-height:none !important;
+  width:256px;
+  height:256px;
+}
+.leaflet-container img.leaflet-marker-icon,
+.leaflet-container img.leaflet-marker-shadow{
+  max-width:none !important;
+}
+.leaflet-control{
+  position:relative;
+  z-index:800;
+  pointer-events:auto;
+}
+.leaflet-top,
+.leaflet-bottom{
+  position:absolute;
+  z-index:1000;
+  pointer-events:none;
+}
+.leaflet-top{top:0}
+.leaflet-bottom{bottom:0}
+.leaflet-left{left:0}
+.leaflet-right{right:0}
+.leaflet-control-zoom a{
+  display:block;
+  width:30px;
+  height:30px;
+  line-height:30px;
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  color:#17302d;
+  border-bottom:1px solid #ccc;
+}
+.leaflet-control-attribution{
+  background:rgba(255,255,255,.8);
+  padding:0 5px;
+  font-size:11px;
+}
