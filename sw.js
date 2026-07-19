@@ -1,7 +1,7 @@
-const CACHE='madeira-v5';
+const CACHE='madeira-v6';
 const ASSETS=[
-  './','./index.html','./leaflet-local.css?v=5','./styles-v5.css?v=5','./app-v5.js?v=5',
-  './data.json?v=5','./manifest.webmanifest','./icon-192.svg','./icon-512.svg','./photo-fallback.svg'
+  './','./index.html','./leaflet-local.css?v=5','./styles-v6.css?v=6','./app-v6.js?v=6',
+  './data.json?v=6','./manifest.webmanifest','./icon-192.svg','./icon-512.svg','./photo-fallback.svg'
 ];
 self.addEventListener('install',event=>{
   self.skipWaiting();

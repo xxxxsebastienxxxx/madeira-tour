@@ -7,7 +7,7 @@
   <title>Madeira Companion</title>
   <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="leaflet-local.css?v=5">
-  <link rel="stylesheet" href="styles-v5.css?v=5">
+  <link rel="stylesheet" href="styles-v6.css?v=6">
 </head>
 <body>
 <header class="hero">
@@ -19,7 +19,121 @@
   <button id="installBtn" class="secondary" hidden>Installer l’app</button>
 </header>
 
+<nav class="quick-nav" aria-label="Navigation principale">
+  <a href="#voyage">✈️ Voyage</a>
+  <a href="#map">🗺️ Carte</a>
+  <a href="#weatherGrid">☀️ Météo</a>
+  <a href="#zones">📍 Lieux</a>
+</nav>
+
 <main>
+  <section id="voyage" class="travel-section card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Informations privées enregistrées sur cet appareil</p>
+        <h2>Tableau de bord du voyage</h2>
+      </div>
+      <button id="exportTravel" class="secondary" type="button">Exporter la sauvegarde</button>
+    </div>
+    <p class="privacy-note">Les données saisies et les documents ajoutés restent dans le stockage local de ce navigateur. Ils ne sont pas ajoutés à GitHub.</p>
+
+    <div id="timeline" class="timeline" aria-live="polite"></div>
+
+    <div class="travel-grid">
+      <article class="travel-card">
+        <h3>✈️ Sébastien</h3>
+        <form class="travel-form" data-record="flight-sebastien">
+          <label>Voyageurs<input name="travellers" value="Sébastien + fils"></label>
+          <label>Compagnie<input name="airline" placeholder="Ex. Transavia"></label>
+          <label>Numéro de vol<input name="flightNumber" placeholder="Ex. TO1234"></label>
+          <label>Départ<input name="departure" type="datetime-local"></label>
+          <label>Arrivée<input name="arrival" type="datetime-local"></label>
+          <label>Aéroport de départ<input name="from" placeholder="Nom ou code"></label>
+          <label>Aéroport d’arrivée<input name="to" placeholder="FNC – Madère"></label>
+          <label>Réservation<input name="booking" placeholder="Référence"></label>
+          <label>Sièges<input name="seats" placeholder="Ex. 12A, 12B"></label>
+          <label>Bagages<input name="bags" placeholder="Cabine, soute…"></label>
+          <label class="full">Billets PDF ou images<input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="flight-sebastien"></label>
+          <div class="document-list full" data-doc-list="flight-sebastien"></div>
+        </form>
+      </article>
+
+      <article class="travel-card">
+        <h3>✈️ Audrey</h3>
+        <form class="travel-form" data-record="flight-audrey">
+          <label>Voyageurs<input name="travellers" value="Audrey + ses 2 garçons"></label>
+          <label>Compagnie<input name="airline" placeholder="Ex. easyJet"></label>
+          <label>Numéro de vol<input name="flightNumber" placeholder="Ex. U21234"></label>
+          <label>Départ<input name="departure" type="datetime-local"></label>
+          <label>Arrivée<input name="arrival" type="datetime-local"></label>
+          <label>Aéroport de départ<input name="from" placeholder="Nom ou code"></label>
+          <label>Aéroport d’arrivée<input name="to" placeholder="FNC – Madère"></label>
+          <label>Réservation<input name="booking" placeholder="Référence"></label>
+          <label>Sièges<input name="seats" placeholder="Ex. 14A, 14B, 14C"></label>
+          <label>Bagages<input name="bags" placeholder="Cabine, soute…"></label>
+          <label class="full">Billets PDF ou images<input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="flight-audrey"></label>
+          <div class="document-list full" data-doc-list="flight-audrey"></div>
+        </form>
+      </article>
+
+      <article class="travel-card">
+        <h3>🏠 Airbnb 1</h3>
+        <form class="travel-form" data-record="airbnb-1">
+          <label>Nom du logement<input name="name" placeholder="Airbnb 1"></label>
+          <label>Adresse<input name="address" placeholder="Adresse exacte"></label>
+          <label>Check-in<input name="checkin" type="datetime-local"></label>
+          <label>Check-out<input name="checkout" type="datetime-local"></label>
+          <label>Hôte<input name="host" placeholder="Nom et téléphone"></label>
+          <label>Code d’accès<input name="access" placeholder="Code, boîte à clés…"></label>
+          <label>Wi-Fi<input name="wifi" placeholder="Réseau / mot de passe"></label>
+          <label>Lien Airbnb<input name="url" type="url" placeholder="https://…"></label>
+          <label class="full">Notes<textarea name="notes" placeholder="Parking, consignes, étage…"></textarea></label>
+          <label class="full">Documents<input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="airbnb-1"></label>
+          <div class="document-list full" data-doc-list="airbnb-1"></div>
+          <div class="location-actions full" data-location-actions="airbnb-1"></div>
+        </form>
+      </article>
+
+      <article class="travel-card">
+        <h3>🏠 Airbnb 2</h3>
+        <form class="travel-form" data-record="airbnb-2">
+          <label>Nom du logement<input name="name" placeholder="Airbnb 2"></label>
+          <label>Adresse<input name="address" placeholder="Adresse exacte"></label>
+          <label>Check-in<input name="checkin" type="datetime-local"></label>
+          <label>Check-out<input name="checkout" type="datetime-local"></label>
+          <label>Hôte<input name="host" placeholder="Nom et téléphone"></label>
+          <label>Code d’accès<input name="access" placeholder="Code, boîte à clés…"></label>
+          <label>Wi-Fi<input name="wifi" placeholder="Réseau / mot de passe"></label>
+          <label>Lien Airbnb<input name="url" type="url" placeholder="https://…"></label>
+          <label class="full">Notes<textarea name="notes" placeholder="Parking, consignes, étage…"></textarea></label>
+          <label class="full">Documents<input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="airbnb-2"></label>
+          <div class="document-list full" data-doc-list="airbnb-2"></div>
+          <div class="location-actions full" data-location-actions="airbnb-2"></div>
+        </form>
+      </article>
+
+      <article class="travel-card car-card">
+        <h3>🚗 Location de voiture</h3>
+        <form class="travel-form" data-record="car-rental">
+          <label>Loueur<input name="company" placeholder="Nom de l’agence"></label>
+          <label>Réservation<input name="booking" placeholder="Référence"></label>
+          <label>Récupération<input name="pickup" type="datetime-local"></label>
+          <label>Restitution<input name="return" type="datetime-local"></label>
+          <label>Adresse de récupération<input name="pickupAddress" placeholder="Adresse exacte"></label>
+          <label>Adresse de restitution<input name="returnAddress" placeholder="Adresse exacte"></label>
+          <label>Véhicule / catégorie<input name="vehicle" placeholder="Ex. SUV compact"></label>
+          <label>Conducteurs<input name="drivers" placeholder="Noms autorisés"></label>
+          <label>Carburant<input name="fuel" placeholder="Plein/plein…"></label>
+          <label>Assurance et franchise<input name="insurance" placeholder="Détails utiles"></label>
+          <label>Téléphone<input name="phone" type="tel"></label>
+          <label class="full">Notes<textarea name="notes" placeholder="Dépôt, documents à présenter, état du véhicule…"></textarea></label>
+          <label class="full">Contrat et réservation<input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="car-rental"></label>
+          <div class="document-list full" data-doc-list="car-rental"></div>
+          <div class="location-actions full" data-location-actions="car-rental"></div>
+        </form>
+      </article>
+    </div>
+  </section>
 
   <section class="map-section card">
     <div class="section-head">
@@ -103,6 +217,6 @@
 
 <footer>Madeira Companion · Les notes suivent votre règle : ⭐⭐⭐ = le plus important.</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app-v5.js?v=5"></script>
+<script src="app-v6.js?v=6"></script>
 </body>
 </html>
