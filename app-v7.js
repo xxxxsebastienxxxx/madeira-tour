@@ -13,10 +13,10 @@ const waze=q=>`https://www.waze.com/ul?q=${encodeURIComponent(q)}&navigate=yes`;
 const fallbackPhoto='photo-fallback.svg';
 
 async function init(){
-  const data=await fetch('data.json?v=7.1').then(r=>r.json());
+  const data=await fetch('data.json?v=7').then(r=>r.json());
   state.places=data.places; state.activities=data.activities;
   fillFilters(); render(); renderActivities(); loadWeather(); initMap();
-  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=7.1');
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=7');
 }
 function fillFilters(){
   [...new Set(state.places.map(p=>p.zone))].sort().forEach(z=>$('#zoneFilter').insertAdjacentHTML('beforeend',`<option>${z}</option>`));
@@ -26,7 +26,7 @@ function filtered(){
   const q=$('#search').value.toLowerCase().trim(),z=$('#zoneFilter').value,c=$('#categoryFilter').value,r=$('#ratingFilter').value;
   return state.places.filter(p=>
     (!q||`${p.name} ${p.description} ${p.category} ${p.zone}`.toLowerCase().includes(q))&&
-    (!z||p.zone===z)&&(!c||p.category===c)&&(!r||String(p.rating)===r)&&
+    (!z||p.zone===z)&&(!c||(c==='🌅 Coucher de soleil'?p.sunset:p.category===c))&&(!r||String(p.rating)===r)&&
     (!$('#favoritesOnly').checked||state.favorites.has(slug(p.name)))&&
     (!$('#hideDone').checked||!state.done.has(slug(p.name)))
   );
@@ -180,7 +180,6 @@ async function openDetail(p){
     <h2>${stars(p.rating)} ${p.name}</h2>
     <span class="priority-label">${priorityText(p.rating)}</span>
     <p>${p.description}</p>
-    ${p.sunset?'<div class="sunset-note">🌅 <strong>Idéal pour admirer le coucher de soleil</strong></div>':''}
     <div class="detail-grid">
       <div class="detail-box"><strong>Type</strong><br>${p.category}</div>
       <div class="detail-box"><strong>Temps conseillé</strong><br>${p.duration}</div>

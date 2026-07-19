@@ -332,8 +332,7 @@
       "duration": "45 min à 1 h 30",
       "weather": "Temps sec, coucher de soleil",
       "description": "Plage de galets face à des pitons rocheux surgissant de l’océan, très photogénique lorsque la lumière baisse.",
-      "tips": "Chaussures stables sur les galets et prudence près des vagues.",
-      "sunset": true
+      "tips": "Chaussures stables sur les galets et prudence près des vagues."
     },
     {
       "name": "Achadas da Cruz",
@@ -366,8 +365,7 @@
       "duration": "3 à 5 h",
       "weather": "Temps sec, vent modéré",
       "description": "Péninsule volcanique aride aux falaises multicolores, très différente du reste de Madère.",
-      "tips": "Peu d’ombre : eau, protection solaire et coupe-vent. Lever ou fin de journée pour la lumière.",
-      "sunset": true
+      "tips": "Peu d’ombre : eau, protection solaire et coupe-vent. Lever ou fin de journée pour la lumière."
     },
     {
       "name": "Ninho da Manta",
@@ -425,18 +423,6 @@
       "weather": "Bonne visibilité",
       "description": "Belvédère dominant le cirque montagneux de Curral das Freiras, accessible après une courte marche depuis le parking.",
       "tips": "À combiner avec la visite du village en contrebas."
-    },
-    {
-      "name": "Praia de Machico",
-      "zone": "Est",
-      "rating": 1,
-      "category": "Baignade",
-      "query": "Praia de Machico, Madeira",
-      "duration": "1 à 3 h",
-      "weather": "Temps sec, mer calme et ciel dégagé",
-      "description": "Plage de sable située dans la baie de Machico, agréable pour une promenade, une baignade ou une halte en fin de journée.",
-      "tips": "Profiter de la promenade maritime et vérifier les conditions de baignade avant d’entrer dans l’eau.",
-      "sunset": true
     }
   ],
   "activities": [
