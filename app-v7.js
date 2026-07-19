@@ -1,6 +1,6 @@
 
 const state={
-  places:[],activities:[],map:null,mapMarkers:[],mapRating:'',mapKind:'all',travelMapMarkers:[],
+  places:[],activities:[],map:null,mapMarkers:[],mapRating:'',mapKind:'all',
   favorites:new Set(JSON.parse(localStorage.getItem('favorites')||'[]')),
   done:new Set(JSON.parse(localStorage.getItem('done')||'[]'))
 };
@@ -280,13 +280,6 @@ function activityMarkerIcon(a){
     iconSize:[38,38],iconAnchor:[19,19],popupAnchor:[0,-18]
   });
 }
-function travelMarkerIcon(type){
-  const emoji=type==='car'?'🚗':'🏠';
-  return L.divIcon({className:'',html:`<div class="travel-marker ${type}"><span>${emoji}</span></div>`,iconSize:[40,40],iconAnchor:[20,36],popupAnchor:[0,-32]});
-}
-function travelPopupHtml(item){
-  return `<div class="map-popup"><div>${item.type==='car'?'🚗 Location de voiture':'🏠 Hébergement'}</div><h3>${item.name}</h3><p>${item.address}</p><div class="popup-actions"><a href="${maps(item.address)}" target="_blank" rel="noopener">Google Maps</a><a href="${waze(item.address)}" target="_blank" rel="noopener">Waze</a></div></div>`;
-}
 function saveCoordinates(cache){localStorage.setItem('madeira-geocode-v1',JSON.stringify(cache))}
 async function geocodeItem(item){
   const cache=cachedCoordinates(),key=item.query;
@@ -298,40 +291,6 @@ async function geocodeItem(item){
   if(!results.length)return null;
   const coords={lat:Number(results[0].lat),lon:Number(results[0].lon)};
   cache[key]=coords;saveCoordinates(cache);return coords;
-}
-async function geocodeAddress(address){
-  if(!address)return null;
-  const cache=cachedCoordinates(),key=`travel:${address}`;
-  if(cache[key])return cache[key];
-  const q=/madeira|funchal|portugal/i.test(address)?address:`${address}, Madeira, Portugal`;
-  const url=`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=pt&viewbox=-17.35,32.95,-16.60,32.55&bounded=1&q=${encodeURIComponent(q)}`;
-  const response=await fetch(url,{headers:{'Accept-Language':'fr'}});
-  if(!response.ok)return null;
-  const results=await response.json();
-  if(!results.length)return null;
-  const coords={lat:Number(results[0].lat),lon:Number(results[0].lon)};
-  cache[key]=coords;saveCoordinates(cache);return coords;
-}
-async function renderTravelMapMarkers(fit=false){
-  if(!state.map||typeof L==='undefined')return;
-  state.travelMapMarkers.forEach(x=>{if(state.map.hasLayer(x.marker))state.map.removeLayer(x.marker);const i=state.mapMarkers.indexOf(x);if(i>=0)state.mapMarkers.splice(i,1)});
-  state.travelMapMarkers=[];
-  const d=getTravelData();
-  const items=[];
-  for(const [id,label] of [['airbnb-1','Airbnb 1'],['airbnb-2','Airbnb 2']]){
-    const a=d[id]||{};if(a.address)items.push({id,type:'home',name:a.name||label,address:a.address});
-  }
-  const c=d['car-rental']||{};
-  if(c.pickupAddress)items.push({id:'car-pickup',type:'car',name:`${c.company||'Location de voiture'} · récupération`,address:c.pickupAddress});
-  if(c.returnAddress&&c.returnAddress.trim()!==String(c.pickupAddress||'').trim())items.push({id:'car-return',type:'car',name:`${c.company||'Location de voiture'} · restitution`,address:c.returnAddress});
-  for(const item of items){
-    try{
-      const coords=await geocodeAddress(item.address);
-      if(coords){const marker=L.marker([coords.lat,coords.lon],{icon:travelMarkerIcon(item.type)}).bindPopup(travelPopupHtml(item),{maxWidth:310});marker.addTo(state.map);const entry={marker,item,kind:'travel'};state.mapMarkers.push(entry);state.travelMapMarkers.push(entry)}
-    }catch(e){console.warn('Adresse non trouvée',item.address,e)}
-  }
-  refreshMapMarkers();
-  if(fit&&state.travelMapMarkers.length)state.map.fitBounds(L.featureGroup(state.travelMapMarkers.map(x=>x.marker)).getBounds().pad(.25),{maxZoom:14});
 }
 function popupHtml(p){
   return `<div class="map-popup"><div>${stars(p.rating)} · ${priorityText(p.rating)}</div><h3>${p.name}</h3>
@@ -346,8 +305,8 @@ function activityPopupHtml(a){
 function refreshMapMarkers(){
   if(!state.map)return;
   state.mapMarkers.forEach(({marker,item,kind})=>{
-    const kindOk=state.mapKind==='all'||state.mapKind===kind;
-    const ratingOk=kind!=='place'||!state.mapRating||String(item.rating)===String(state.mapRating);
+    const kindOk=kind==='travel'||state.mapKind==='all'||state.mapKind===kind;
+    const ratingOk=kind==='activity'||kind==='travel'||!state.mapRating||String(item.rating)===String(state.mapRating);
     const shouldShow=kindOk&&ratingOk;
     if(shouldShow){if(!state.map.hasLayer(marker))marker.addTo(state.map)}
     else if(state.map.hasLayer(marker))state.map.removeLayer(marker);
@@ -387,7 +346,7 @@ async function initMap(){
   const p=await addMapItems(state.places,'place',status,0,total);
   const a=await addMapItems(state.activities,'activity',status,state.places.length,total);
   status.textContent=`${p.added} lieux et ${a.added} activités affichés${p.missing+a.missing?` · ${p.missing+a.missing} non trouvé(s)`:''}`;
-  await renderTravelMapMarkers(false);
+  await refreshTravelMarkers();
   refreshMapMarkers();
 }
 document.querySelectorAll('.map-filter').forEach(button=>button.addEventListener('click',()=>{
@@ -421,62 +380,86 @@ $('#installBtn').addEventListener('click',async()=>{if(deferredPrompt){deferredP
 init();
 
 
-/* ---------- Voyage, chronologie et documents locaux ---------- */
-const TRAVEL_KEY='madeira-travel-v1';
-const travelRecords={};
-function getTravelData(){try{return JSON.parse(localStorage.getItem(TRAVEL_KEY)||'{}')}catch{return{}}}
+/* ---------- Voyage simplifié et documents locaux ---------- */
+const TRAVEL_KEY='madeira-travel-v2';
+let travelGeocodeTimer;
+function getTravelData(){try{const current=JSON.parse(localStorage.getItem(TRAVEL_KEY)||'null');if(current)return current;const old=JSON.parse(localStorage.getItem('madeira-travel-v1')||'{}');if(old['car-rental']&&!old['car-rental'].address)old['car-rental'].address=old['car-rental'].pickupAddress||old['car-rental'].returnAddress||'';localStorage.setItem(TRAVEL_KEY,JSON.stringify(old));return old}catch{return{}}}
 function saveTravelRecord(id,form){
   const all=getTravelData();
   all[id]=Object.fromEntries(new FormData(form).entries());
   localStorage.setItem(TRAVEL_KEY,JSON.stringify(all));
-  renderTimeline();renderLocationActions(id,all[id]);if(id.startsWith('airbnb')||id==='car-rental')renderTravelMapMarkers(false);
+  renderLocationActions(id,all[id]);
+  clearTimeout(travelGeocodeTimer);
+  travelGeocodeTimer=setTimeout(refreshTravelMarkers,700);
 }
 function loadTravelForms(){
   const all=getTravelData();
   document.querySelectorAll('.travel-form[data-record]').forEach(form=>{
-    const id=form.dataset.record; travelRecords[id]=form;
-    const saved=all[id]||{};
+    const id=form.dataset.record,saved=all[id]||{};
     Object.entries(saved).forEach(([name,value])=>{const field=form.elements.namedItem(name);if(field&&field.type!=='file')field.value=value});
     form.addEventListener('input',()=>saveTravelRecord(id,form));
     form.addEventListener('change',()=>saveTravelRecord(id,form));
     renderLocationActions(id,saved);
   });
 }
-function fmtDate(value){if(!value)return'';const d=new Date(value);return Number.isNaN(d)?value:new Intl.DateTimeFormat('fr-FR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(d)}
-function fmtTime(value){if(!value)return'';const d=new Date(value);return Number.isNaN(d)?'':new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit'}).format(d)}
-function renderTimeline(){
-  const d=getTravelData(), events=[];
-  const add=(date,icon,title,detail='')=>{if(date)events.push({date,icon,title,detail})};
-  for(const [id,label] of [['flight-sebastien','Sébastien'],['flight-audrey','Audrey']]){
-    const f=d[id]||{};
-    add(f.outDeparture,'✈️',`${label} · aller — départ`,[f.outFlightNumber,f.outFrom&&`depuis ${f.outFrom}`,f.outTo&&`vers ${f.outTo}`].filter(Boolean).join(' · '));
-    add(f.outArrival,'🛬',`${label} · aller — arrivée`,[f.outFlightNumber,f.outTo].filter(Boolean).join(' · '));
-    add(f.returnDeparture,'✈️',`${label} · retour — départ`,[f.returnFlightNumber,f.returnFrom&&`depuis ${f.returnFrom}`,f.returnTo&&`vers ${f.returnTo}`].filter(Boolean).join(' · '));
-    add(f.returnArrival,'🛬',`${label} · retour — arrivée`,[f.returnFlightNumber,f.returnTo].filter(Boolean).join(' · '));
-  }
-  for(const [id,label] of [['airbnb-1','Airbnb 1'],['airbnb-2','Airbnb 2']]){
-    const a=d[id]||{};add(a.checkin,'🏠',`${label} · check-in`,a.name||a.address||'');add(a.checkout,'🔑',`${label} · check-out`,a.name||a.address||'');
-  }
-  const c=d['car-rental']||{};add(c.pickup,'🚗','Récupération de la voiture',[c.company,c.pickupAddress].filter(Boolean).join(' · '));add(c.return,'🚘','Restitution de la voiture',[c.company,c.returnAddress].filter(Boolean).join(' · '));
-  events.sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const el=document.querySelector('#timeline');if(!el)return;
-  if(!events.length){el.innerHTML='<div class="timeline-empty">La chronologie apparaîtra dès que vous saisirez les dates des vols, des Airbnb ou de la voiture.</div>';return}
-  const groups=events.reduce((acc,e)=>{const k=new Date(e.date).toISOString().slice(0,10);(acc[k]??=[]).push(e);return acc},{});
-  el.innerHTML='<h3>📅 Chronologie essentielle</h3>'+Object.entries(groups).map(([date,items])=>`<div class="timeline-day"><div class="timeline-date">${fmtDate(date+'T12:00')}</div><div class="timeline-events">${items.map(e=>`<div class="timeline-event"><strong>${e.icon} ${fmtTime(e.date)} · ${e.title}</strong>${e.detail?`<small>${e.detail}</small>`:''}</div>`).join('')}</div></div>`).join('');
-}
+function travelAddress(id,data){return data.address||''}
 function renderLocationActions(id,data){
   const box=document.querySelector(`[data-location-actions="${id}"]`);if(!box)return;
-  if(id.startsWith('airbnb')){const address=data.address||'';box.innerHTML=address?`<a href="${maps(address)}" target="_blank" rel="noopener">Google Maps</a><a href="${waze(address)}" target="_blank" rel="noopener">Waze</a><button type="button" class="show-on-map">Voir sur la carte</button>`:'';}
-  else{const pickup=data.pickupAddress||'',ret=data.returnAddress||'';box.innerHTML=[pickup?`<span><strong>Récupération :</strong> <a href="${maps(pickup)}" target="_blank" rel="noopener">Google Maps</a> <a href="${waze(pickup)}" target="_blank" rel="noopener">Waze</a></span>`:'',ret?`<span><strong>Restitution :</strong> <a href="${maps(ret)}" target="_blank" rel="noopener">Google Maps</a> <a href="${waze(ret)}" target="_blank" rel="noopener">Waze</a></span>`:'',pickup||ret?'<button type="button" class="show-on-map">Voir sur la carte</button>':''].join('');}
-  box.querySelector('.show-on-map')?.addEventListener('click',()=>{document.querySelector('#map')?.scrollIntoView({behavior:'smooth'});renderTravelMapMarkers(true)});
+  const address=travelAddress(id,data);
+  box.innerHTML=address?`<a href="${maps(address)}" target="_blank" rel="noopener">Google Maps</a><a href="${waze(address)}" target="_blank" rel="noopener">Waze</a>`:'';
 }
-function openDocsDb(){return new Promise((resolve,reject)=>{const req=indexedDB.open('madeira-documents',1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('docs')){const s=db.createObjectStore('docs',{keyPath:'id'});s.createIndex('owner','owner')}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+function travelMarkerIcon(type){
+  return L.divIcon({className:'',html:`<div class="travel-marker"><span>${type==='car'?'🚗':'🏠'}</span></div>`,iconSize:[40,40],iconAnchor:[20,36],popupAnchor:[0,-32]});
+}
+async function geocodeTravel(address){
+  if(!address)return null;
+  const key=`travel:${address}`,cache=cachedCoordinates();
+  if(cache[key])return cache[key];
+  const query=/madeira|funchal|santana|portugal/i.test(address)?address:`${address}, Madeira, Portugal`;
+  const url=`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=pt&viewbox=-17.35,32.95,-16.60,32.55&bounded=1&q=${encodeURIComponent(query)}`;
+  const response=await fetch(url,{headers:{'Accept-Language':'fr'}});
+  if(!response.ok)return null;
+  const results=await response.json();if(!results.length)return null;
+  const coords={lat:Number(results[0].lat),lon:Number(results[0].lon)};
+  cache[key]=coords;saveCoordinates(cache);return coords;
+}
+async function refreshTravelMarkers(){
+  if(!state.map||typeof L==='undefined')return;
+  state.mapMarkers.filter(x=>x.kind==='travel').forEach(x=>state.map.removeLayer(x.marker));
+  state.mapMarkers=state.mapMarkers.filter(x=>x.kind!=='travel');
+  const data=getTravelData();
+  const entries=[
+    {id:'airbnb-1',label:data['airbnb-1']?.name||'Airbnb 1',address:data['airbnb-1']?.address,type:'home'},
+    {id:'airbnb-2',label:data['airbnb-2']?.name||'Airbnb 2',address:data['airbnb-2']?.address,type:'home'},
+    {id:'car-rental',label:data['car-rental']?.company||'Location de voiture',address:data['car-rental']?.address,type:'car'}
+  ];
+  for(const item of entries){
+    const status=document.querySelector(`[data-location-status="${item.id}"]`);
+    if(!item.address){if(status)status.textContent='';continue}
+    if(status)status.textContent='Recherche de l’adresse sur la carte…';
+    try{
+      const coords=await geocodeTravel(item.address);
+      if(!coords){if(status)status.textContent='Adresse non trouvée. Ajoutez la ville et « Madère » pour la préciser.';continue}
+      const popup=`<div class="map-popup"><h3>${item.type==='car'?'🚗':'🏠'} ${item.label}</h3><p>${item.address}</p><div class="popup-actions"><a href="${maps(item.address)}" target="_blank" rel="noopener">Google Maps</a><a href="${waze(item.address)}" target="_blank" rel="noopener">Waze</a></div></div>`;
+      const marker=L.marker([coords.lat,coords.lon],{icon:travelMarkerIcon(item.type)}).bindPopup(popup,{maxWidth:310}).addTo(state.map);
+      state.mapMarkers.push({marker,item,kind:'travel'});
+      if(status)status.textContent='✓ Affiché sur la carte';
+    }catch(e){if(status)status.textContent='Impossible de rechercher cette adresse pour le moment.'}
+  }
+}
+function openDocsDb(){return new Promise((resolve,reject)=>{const req=indexedDB.open('madeira-documents',1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('docs')){const store=db.createObjectStore('docs',{keyPath:'id'});store.createIndex('owner','owner')}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
 async function saveDocuments(owner,files){const db=await openDocsDb();await Promise.all([...files].map(file=>new Promise((resolve,reject)=>{const tx=db.transaction('docs','readwrite');tx.objectStore('docs').put({id:crypto.randomUUID(),owner,name:file.name,type:file.type,size:file.size,created:Date.now(),blob:file});tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})));renderDocuments(owner)}
 async function listDocuments(owner){const db=await openDocsDb();return new Promise((resolve,reject)=>{const tx=db.transaction('docs','readonly');const req=tx.objectStore('docs').index('owner').getAll(owner);req.onsuccess=()=>resolve(req.result.sort((a,b)=>b.created-a.created));req.onerror=()=>reject(req.error)})}
 async function deleteDocument(id,owner){const db=await openDocsDb();await new Promise((resolve,reject)=>{const tx=db.transaction('docs','readwrite');tx.objectStore('docs').delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});renderDocuments(owner)}
-async function renderDocuments(owner){const box=document.querySelector(`[data-doc-list="${owner}"]`);if(!box)return;const docs=await listDocuments(owner);box.innerHTML=docs.map(doc=>`<div class="document-item"><span>📄 ${doc.name}</span><div class="document-item-actions"><button type="button" data-open-doc="${doc.id}">Ouvrir</button><button type="button" data-delete-doc="${doc.id}">Supprimer</button></div></div>`).join('');box.querySelectorAll('[data-open-doc]').forEach(btn=>btn.onclick=async()=>{const doc=docs.find(x=>x.id===btn.dataset.openDoc);if(doc){const url=URL.createObjectURL(doc.blob);window.open(url,'_blank');setTimeout(()=>URL.revokeObjectURL(url),60000)}});box.querySelectorAll('[data-delete-doc]').forEach(btn=>btn.onclick=()=>deleteDocument(btn.dataset.deleteDoc,owner))}
+function docUrl(doc){return URL.createObjectURL(doc.blob)}
+async function renderDocuments(owner){
+  const box=document.querySelector(`[data-doc-list="${owner}"]`);if(!box)return;
+  const docs=await listDocuments(owner);
+  box.innerHTML=docs.length?docs.map(doc=>`<div class="document-item"><span>📄 ${doc.name}</span><div class="document-item-actions"><button type="button" data-open-doc="${doc.id}">Ouvrir</button><button type="button" data-download-doc="${doc.id}">Télécharger</button><button type="button" data-delete-doc="${doc.id}">Supprimer</button></div></div>`).join(''):'<small>Aucun document ajouté.</small>';
+  box.querySelectorAll('[data-open-doc]').forEach(btn=>btn.onclick=()=>{const doc=docs.find(x=>x.id===btn.dataset.openDoc);if(doc){const url=docUrl(doc);window.open(url,'_blank');setTimeout(()=>URL.revokeObjectURL(url),60000)}});
+  box.querySelectorAll('[data-download-doc]').forEach(btn=>btn.onclick=()=>{const doc=docs.find(x=>x.id===btn.dataset.downloadDoc);if(doc){const url=docUrl(doc),a=document.createElement('a');a.href=url;a.download=doc.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}});
+  box.querySelectorAll('[data-delete-doc]').forEach(btn=>btn.onclick=()=>deleteDocument(btn.dataset.deleteDoc,owner));
+}
 function initDocuments(){document.querySelectorAll('.document-input').forEach(input=>{input.addEventListener('change',async()=>{if(input.files?.length){await saveDocuments(input.dataset.owner,input.files);input.value=''}});renderDocuments(input.dataset.owner)})}
-function exportTravel(){const payload={exportedAt:new Date().toISOString(),travel:getTravelData()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='madeira-companion-sauvegarde.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function initFlightSearch(){document.querySelectorAll('.flight-search').forEach(btn=>btn.addEventListener('click',()=>{const form=btn.closest('form'),[numberName,dateName]=btn.dataset.flightFields.split(','),number=form.elements.namedItem(numberName)?.value.trim(),date=form.elements.namedItem(dateName)?.value;if(!number){alert('Saisissez d’abord le numéro de vol.');return}const query=[number,date,'statut horaires vol'].filter(Boolean).join(' ');window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`,'_blank','noopener')}))}
-function initTravel(){loadTravelForms();initDocuments();renderTimeline();initFlightSearch();document.querySelector('#exportTravel')?.addEventListener('click',exportTravel)}
+function initTravel(){loadTravelForms();initDocuments();refreshTravelMarkers()}
 document.addEventListener('DOMContentLoaded',initTravel);

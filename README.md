@@ -1,48 +1,16 @@
-# Madeira Companion
+# Madeira Companion V7
 
-## Utilisation rapide
-Cette application est une PWA statique. Pour l’essayer localement :
+Version simplifiée du tableau de voyage :
 
-```bash
-python -m http.server 8000
-```
+- billets de Sébastien : ajout de PDF ou photos ;
+- billets d’Audrey : ajout séparé de PDF ou photos ;
+- deux Airbnb : nom, adresse, affichage sur la carte, Google Maps et Waze ;
+- location de voiture : nom du loueur, adresse de l’agence, carte, Google Maps, Waze et documents ;
+- documents conservés localement dans le navigateur via IndexedDB ;
+- boutons Ouvrir, Télécharger et Supprimer pour chaque document.
 
-Puis ouvrez `http://localhost:8000/madeira-companion/` si le dossier est servi depuis `/mnt/data`, ou lancez la commande directement dans le dossier et ouvrez `http://localhost:8000`.
+## Mise à jour GitHub Pages
 
-## Mise en ligne
-Déposez le contenu du dossier sur GitHub Pages, Netlify, Vercel ou tout hébergeur statique HTTPS. L’installation sur l’écran d’accueil et le mode hors ligne nécessitent HTTPS (sauf localhost).
+Remplacez tous les anciens fichiers du dépôt par ceux de cette archive, puis attendez la republication de GitHub Pages. Fermez ensuite complètement l’application sur l’iPhone et rouvrez-la pour charger le nouveau service worker.
 
-## Fonctionnalités
-- lieux regroupés par zone ;
-- tri selon vos notes (⭐⭐⭐ = priorité maximale) ;
-- filtres par zone, catégorie et priorité ;
-- liens Google Maps et Waze ;
-- météo indicative par grands secteurs ;
-- favoris, lieux faits et notes personnelles enregistrés sur le téléphone ;
-- fonctionnement hors ligne après une première visite.
-
-
-## Version 5
-- règle de priorité explicitée : 3 étoiles = fort intérêt ;
-- correction de la zone des deux cases à cocher sur mobile ;
-- photos chargées progressivement depuis Wikimedia, avec visuel local de secours ;
-- fiches enrichies avec informations pratiques et points d’intérêt à proximité ;
-- activités affichées sur la carte avec des pictogrammes distincts.
-
-
-## Version 6
-- Tableau de bord Voyage avec vols Sébastien et Audrey.
-- Deux fiches Airbnb.
-- Fiche complète de location de voiture.
-- Chronologie limitée aux vols, Airbnb et voiture.
-- Pièces jointes conservées localement dans IndexedDB.
-- Export JSON des informations saisies.
-
-Pour publier : remplacer tous les fichiers du dépôt GitHub Pages par ceux de cette archive, puis recharger l’application.
-
-
-## Version 7
-- Vols aller et retour séparés pour Sébastien et Audrey.
-- Recherche web d’un vol par numéro et date.
-- Airbnb et agence de location ajoutés dynamiquement à la carte après saisie de leur adresse.
-- Liens Google Maps et Waze pour chaque adresse.
+Les documents ajoutés ne sont pas envoyés sur GitHub. Ils restent sur l’appareil et peuvent disparaître si les données du navigateur sont effacées.
