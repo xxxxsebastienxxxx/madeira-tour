@@ -346,3 +346,16 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.9rem}
 .travel-marker span{transform:rotate(45deg);font-size:21px}
 .document-item-actions{flex-wrap:wrap}
 @media(max-width:520px){.document-item{align-items:flex-start;flex-direction:column}.document-item-actions{width:100%}.document-item-actions button{flex:1}}
+
+/* V7.1 : indication automatique des lieux conseillés au coucher du soleil */
+.sunset-note{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:2px 0 4px;
+  padding:11px 13px;
+  border:1px solid #fed7aa;
+  border-radius:12px;
+  background:#fff7ed;
+  color:#9a3412;
+}

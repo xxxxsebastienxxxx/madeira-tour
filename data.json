@@ -9,7 +9,8 @@
       "duration": "1 h 30 à 3 h",
       "weather": "Mer calme et temps doux",
       "description": "Bassins volcaniques aménagés au bord de l’Atlantique. Le site est spectaculaire même sans baignade, mais il prend tout son sens lorsque la mer est calme.",
-      "tips": "Prévoir maillot, serviette et chaussures antidérapantes. Vérifier l’état de la mer avant de se baigner."
+      "tips": "Prévoir maillot, serviette et chaussures antidérapantes. Vérifier l’état de la mer avant de se baigner.",
+      "sunset": true
     },
     {
       "name": "Pico Ruivo",
@@ -108,7 +109,8 @@
       "duration": "1 à 3 h",
       "weather": "Mer calme, lumière du matin",
       "description": "Plage de sable noir encadrée de falaises vertes, avec des piscines naturelles à proximité. L’un des paysages côtiers les plus photogéniques de l’île.",
-      "tips": "Arriver tôt pour stationner plus facilement. Prudence en cas de forte houle."
+      "tips": "Arriver tôt pour stationner plus facilement. Prudence en cas de forte houle.",
+      "sunset": true
     },
     {
       "name": "Cascata do Risco",
@@ -130,7 +132,8 @@
       "duration": "30 à 60 min",
       "weather": "Bonne visibilité",
       "description": "Belvédère célèbre pour sa plateforme vitrée suspendue au-dessus de l’une des plus hautes falaises maritimes d’Europe.",
-      "tips": "Peut être très fréquenté. Arriver tôt ou en fin de journée."
+      "tips": "Peut être très fréquenté. Arriver tôt ou en fin de journée.",
+      "sunset": true
     },
     {
       "name": "Ponta Delgada – côte et cascade",
@@ -218,7 +221,8 @@
       "duration": "20 à 40 min",
       "weather": "Bonne visibilité",
       "description": "Cascade descendant le long d’une falaise vers l’océan, visible depuis un belvédère routier.",
-      "tips": "Arrêt court et facile, parfait entre Seixal et São Vicente."
+      "tips": "Arrêt court et facile, parfait entre Seixal et São Vicente.",
+      "sunset": true
     },
     {
       "name": "PR1 – Vereda do Areeiro",
@@ -328,7 +332,8 @@
       "duration": "45 min à 1 h 30",
       "weather": "Temps sec, coucher de soleil",
       "description": "Plage de galets face à des pitons rocheux surgissant de l’océan, très photogénique lorsque la lumière baisse.",
-      "tips": "Chaussures stables sur les galets et prudence près des vagues."
+      "tips": "Chaussures stables sur les galets et prudence près des vagues.",
+      "sunset": true
     },
     {
       "name": "Achadas da Cruz",
@@ -361,7 +366,8 @@
       "duration": "3 à 5 h",
       "weather": "Temps sec, vent modéré",
       "description": "Péninsule volcanique aride aux falaises multicolores, très différente du reste de Madère.",
-      "tips": "Peu d’ombre : eau, protection solaire et coupe-vent. Lever ou fin de journée pour la lumière."
+      "tips": "Peu d’ombre : eau, protection solaire et coupe-vent. Lever ou fin de journée pour la lumière.",
+      "sunset": true
     },
     {
       "name": "Ninho da Manta",
@@ -383,7 +389,8 @@
       "duration": "30 à 60 min",
       "weather": "Bonne visibilité",
       "description": "Belvédère spectaculaire sur la côte nord-est, avec plateformes donnant l’impression d’avancer au-dessus de l’océan.",
-      "tips": "Très beau au lever du soleil ; attention au vent."
+      "tips": "Très beau au lever du soleil ; attention au vent.",
+      "sunset": true
     },
     {
       "name": "PR18 – Levada do Rei",
@@ -405,7 +412,8 @@
       "duration": "1 à 2 h",
       "weather": "Temps sec, coucher de soleil",
       "description": "Village piétonnier en partie, accroché entre montagne et océan, apprécié pour ses ruelles, ses jardins et son ambiance paisible.",
-      "tips": "Stationner à l’entrée et descendre à pied jusqu’au front de mer."
+      "tips": "Stationner à l’entrée et descendre à pied jusqu’au front de mer.",
+      "sunset": true
     },
     {
       "name": "Eira do Serrado",
@@ -417,6 +425,18 @@
       "weather": "Bonne visibilité",
       "description": "Belvédère dominant le cirque montagneux de Curral das Freiras, accessible après une courte marche depuis le parking.",
       "tips": "À combiner avec la visite du village en contrebas."
+    },
+    {
+      "name": "Praia de Machico",
+      "zone": "Est",
+      "rating": 1,
+      "category": "Baignade",
+      "query": "Praia de Machico, Madeira",
+      "duration": "1 à 3 h",
+      "weather": "Temps sec, mer calme et ciel dégagé",
+      "description": "Plage de sable située dans la baie de Machico, agréable pour une promenade, une baignade ou une halte en fin de journée.",
+      "tips": "Profiter de la promenade maritime et vérifier les conditions de baignade avant d’entrer dans l’eau.",
+      "sunset": true
     }
   ],
   "activities": [

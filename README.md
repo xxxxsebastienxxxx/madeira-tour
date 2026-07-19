@@ -1,4 +1,4 @@
-# Madeira Companion V7
+# Madeira Companion V7.1
 
 Version simplifiée du tableau de voyage :
 
@@ -14,3 +14,8 @@ Version simplifiée du tableau de voyage :
 Remplacez tous les anciens fichiers du dépôt par ceux de cette archive, puis attendez la republication de GitHub Pages. Fermez ensuite complètement l’application sur l’iPhone et rouvrez-la pour charger le nouveau service worker.
 
 Les documents ajoutés ne sont pas envoyés sur GitHub. Ils restent sur l’appareil et peuvent disparaître si les données du navigateur sont effacées.
+
+
+## Nouveauté V7.1
+
+Les fiches de neuf lieux recommandés affichent automatiquement « 🌅 Idéal pour admirer le coucher de soleil », sans nouveau bouton ni filtre.
