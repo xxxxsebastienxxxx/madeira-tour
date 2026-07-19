@@ -7,7 +7,7 @@
   <title>Madeira Companion</title>
   <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="leaflet-local.css?v=5">
-  <link rel="stylesheet" href="styles-v6.css?v=6">
+  <link rel="stylesheet" href="styles-v7.css?v=7">
 </head>
 <body>
 <header class="hero">
@@ -40,16 +40,29 @@
     <div id="timeline" class="timeline" aria-live="polite"></div>
 
     <div class="travel-grid">
-      <article class="travel-card">
+      <article class="travel-card flight-card">
         <h3>✈️ Sébastien</h3>
         <form class="travel-form" data-record="flight-sebastien">
           <label>Voyageurs<input name="travellers" value="Sébastien + fils"></label>
+          <fieldset class="flight-leg full"><legend>Aller</legend>
+            <label>Numéro de vol<input name="outFlightNumber" placeholder="Ex. TO1234"></label>
+            <label>Date<input name="outDate" type="date"></label>
+            <label>Départ<input name="outDeparture" type="datetime-local"></label>
+            <label>Arrivée<input name="outArrival" type="datetime-local"></label>
+            <label>Aéroport de départ<input name="outFrom" placeholder="Nom ou code"></label>
+            <label>Aéroport d’arrivée<input name="outTo" placeholder="FNC – Madère"></label>
+            <button class="flight-search secondary" type="button" data-flight-fields="outFlightNumber,outDate">Rechercher ce vol</button>
+          </fieldset>
+          <fieldset class="flight-leg full"><legend>Retour</legend>
+            <label>Numéro de vol<input name="returnFlightNumber" placeholder="Ex. TO4321"></label>
+            <label>Date<input name="returnDate" type="date"></label>
+            <label>Départ<input name="returnDeparture" type="datetime-local"></label>
+            <label>Arrivée<input name="returnArrival" type="datetime-local"></label>
+            <label>Aéroport de départ<input name="returnFrom" placeholder="FNC – Madère"></label>
+            <label>Aéroport d’arrivée<input name="returnTo" placeholder="Nom ou code"></label>
+            <button class="flight-search secondary" type="button" data-flight-fields="returnFlightNumber,returnDate">Rechercher ce vol</button>
+          </fieldset>
           <label>Compagnie<input name="airline" placeholder="Ex. Transavia"></label>
-          <label>Numéro de vol<input name="flightNumber" placeholder="Ex. TO1234"></label>
-          <label>Départ<input name="departure" type="datetime-local"></label>
-          <label>Arrivée<input name="arrival" type="datetime-local"></label>
-          <label>Aéroport de départ<input name="from" placeholder="Nom ou code"></label>
-          <label>Aéroport d’arrivée<input name="to" placeholder="FNC – Madère"></label>
           <label>Réservation<input name="booking" placeholder="Référence"></label>
           <label>Sièges<input name="seats" placeholder="Ex. 12A, 12B"></label>
           <label>Bagages<input name="bags" placeholder="Cabine, soute…"></label>
@@ -58,16 +71,29 @@
         </form>
       </article>
 
-      <article class="travel-card">
+      <article class="travel-card flight-card">
         <h3>✈️ Audrey</h3>
         <form class="travel-form" data-record="flight-audrey">
           <label>Voyageurs<input name="travellers" value="Audrey + ses 2 garçons"></label>
+          <fieldset class="flight-leg full"><legend>Aller</legend>
+            <label>Numéro de vol<input name="outFlightNumber" placeholder="Ex. U21234"></label>
+            <label>Date<input name="outDate" type="date"></label>
+            <label>Départ<input name="outDeparture" type="datetime-local"></label>
+            <label>Arrivée<input name="outArrival" type="datetime-local"></label>
+            <label>Aéroport de départ<input name="outFrom" placeholder="Nom ou code"></label>
+            <label>Aéroport d’arrivée<input name="outTo" placeholder="FNC – Madère"></label>
+            <button class="flight-search secondary" type="button" data-flight-fields="outFlightNumber,outDate">Rechercher ce vol</button>
+          </fieldset>
+          <fieldset class="flight-leg full"><legend>Retour indépendant</legend>
+            <label>Numéro de vol<input name="returnFlightNumber" placeholder="Ex. U24321"></label>
+            <label>Date<input name="returnDate" type="date"></label>
+            <label>Départ<input name="returnDeparture" type="datetime-local"></label>
+            <label>Arrivée<input name="returnArrival" type="datetime-local"></label>
+            <label>Aéroport de départ<input name="returnFrom" placeholder="FNC – Madère"></label>
+            <label>Aéroport d’arrivée<input name="returnTo" placeholder="Nom ou code"></label>
+            <button class="flight-search secondary" type="button" data-flight-fields="returnFlightNumber,returnDate">Rechercher ce vol</button>
+          </fieldset>
           <label>Compagnie<input name="airline" placeholder="Ex. easyJet"></label>
-          <label>Numéro de vol<input name="flightNumber" placeholder="Ex. U21234"></label>
-          <label>Départ<input name="departure" type="datetime-local"></label>
-          <label>Arrivée<input name="arrival" type="datetime-local"></label>
-          <label>Aéroport de départ<input name="from" placeholder="Nom ou code"></label>
-          <label>Aéroport d’arrivée<input name="to" placeholder="FNC – Madère"></label>
           <label>Réservation<input name="booking" placeholder="Référence"></label>
           <label>Sièges<input name="seats" placeholder="Ex. 14A, 14B, 14C"></label>
           <label>Bagages<input name="bags" placeholder="Cabine, soute…"></label>
@@ -151,6 +177,7 @@
       <button class="map-kind-filter active" type="button" data-map-kind="all">Tous</button>
       <button class="map-kind-filter" type="button" data-map-kind="place">📍 Lieux</button>
       <button class="map-kind-filter" type="button" data-map-kind="activity">🎯 Activités</button>
+      <button class="map-kind-filter" type="button" data-map-kind="travel">🏠 Séjour & voiture</button>
       <span class="toolbar-separator" aria-hidden="true"></span>
       <button class="map-filter active" type="button" data-map-rating="">Toutes priorités</button>
       <button class="map-filter" type="button" data-map-rating="3">⭐⭐⭐ Fort intérêt</button>
@@ -217,6 +244,6 @@
 
 <footer>Madeira Companion · Les notes suivent votre règle : ⭐⭐⭐ = le plus important.</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app-v6.js?v=6"></script>
+<script src="app-v7.js?v=7"></script>
 </body>
 </html>

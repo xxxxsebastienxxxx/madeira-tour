@@ -39,3 +39,10 @@ Déposez le contenu du dossier sur GitHub Pages, Netlify, Vercel ou tout héberg
 - Export JSON des informations saisies.
 
 Pour publier : remplacer tous les fichiers du dépôt GitHub Pages par ceux de cette archive, puis recharger l’application.
+
+
+## Version 7
+- Vols aller et retour séparés pour Sébastien et Audrey.
+- Recherche web d’un vol par numéro et date.
+- Airbnb et agence de location ajoutés dynamiquement à la carte après saisie de leur adresse.
+- Liens Google Maps et Waze pour chaque adresse.
