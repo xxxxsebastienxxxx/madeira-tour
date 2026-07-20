@@ -1,0 +1,479 @@
+{
+  "places": [
+    {
+      "name": "Porto Moniz – piscines naturelles",
+      "zone": "Nord-Ouest",
+      "rating": 1,
+      "category": "Baignade",
+      "query": "Piscinas Naturais de Porto Moniz, Madeira",
+      "duration": "1 h 30 à 3 h",
+      "weather": "Mer calme et temps doux",
+      "description": "Bassins volcaniques aménagés au bord de l’Atlantique. Le site est spectaculaire même sans baignade, mais il prend tout son sens lorsque la mer est calme.",
+      "tips": "Prévoir maillot, serviette et chaussures antidérapantes. Vérifier l’état de la mer avant de se baigner.",
+      "sunset": true
+    },
+    {
+      "name": "Pico Ruivo",
+      "zone": "Centre / Montagnes",
+      "rating": 2,
+      "category": "Randonnée",
+      "query": "Pico Ruivo, Madeira",
+      "duration": "3 à 6 h selon l’accès",
+      "weather": "Ciel dégagé, vent faible",
+      "description": "Point culminant de Madère, avec des panoramas de haute montagne et, certains jours, une mer de nuages impressionnante.",
+      "tips": "Partir équipé d’une lampe si départ avant l’aube, d’un coupe-vent et de bonnes chaussures. Les conditions changent très vite."
+    },
+    {
+      "name": "Santo António – point de vue",
+      "zone": "Ouest",
+      "rating": 2,
+      "category": "Point de vue",
+      "query": "Santo António viewpoint Madeira",
+      "duration": "20 à 40 min",
+      "weather": "Bonne visibilité",
+      "description": "Belvédère sur les reliefs verdoyants et les falaises de la côte ouest, intéressant pour une courte halte panoramique.",
+      "tips": "À combiner avec Ponta do Sol, Calheta ou Jardim do Mar."
+    },
+    {
+      "name": "Ponta do Sol",
+      "zone": "Ouest",
+      "rating": 1,
+      "category": "Village",
+      "query": "Ponta do Sol Madeira",
+      "duration": "1 à 2 h",
+      "weather": "Temps sec, fin de journée agréable",
+      "description": "Petit bourg côtier lumineux, apprécié pour sa promenade maritime, ses façades colorées et son ambiance paisible.",
+      "tips": "Belle étape pour une pause café ou un dîner au coucher du soleil."
+    },
+    {
+      "name": "Ponta do Garajau",
+      "zone": "Funchal / Sud-Est",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Ponta do Garajau Madeira",
+      "duration": "45 min à 1 h 30",
+      "weather": "Temps clair, peu de vent",
+      "description": "Promontoire connu pour la statue du Cristo Rei, les vues sur la côte et l’accès en téléphérique vers la réserve marine.",
+      "tips": "Vérifier les horaires du téléphérique. Très beau en fin de journée."
+    },
+    {
+      "name": "Fajã dos Padres",
+      "zone": "Ouest",
+      "rating": 1,
+      "category": "Nature",
+      "query": "Fajã dos Padres Madeira",
+      "duration": "2 à 4 h",
+      "weather": "Temps sec, mer calme",
+      "description": "Bande de terre agricole isolée entre une falaise vertigineuse et l’océan, accessible principalement par téléphérique.",
+      "tips": "Prévoir du temps pour descendre, marcher au bord de mer et remonter. Vérifier les horaires du téléphérique."
+    },
+    {
+      "name": "Paul do Mar",
+      "zone": "Ouest",
+      "rating": 3,
+      "category": "Village",
+      "query": "Paul do Mar Madeira",
+      "duration": "1 à 2 h",
+      "weather": "Temps sec, belles vagues",
+      "description": "Village de pêcheurs tourné vers l’océan, réputé pour le surf, les couchers de soleil et son atmosphère plus brute que les stations balnéaires.",
+      "tips": "Se promener sur le front de mer et surveiller la houle."
+    },
+    {
+      "name": "Santana – maisons traditionnelles",
+      "zone": "Nord-Est",
+      "rating": 3,
+      "category": "Village",
+      "query": "Casas Típicas de Santana Madeira",
+      "duration": "1 à 2 h",
+      "weather": "Tous temps, mieux sans forte pluie",
+      "description": "Les maisons triangulaires au toit de chaume sont l’un des symboles de Madère. Le centre se visite facilement et se combine bien avec les miradouros de la côte nord-est.",
+      "tips": "Le site central est touristique ; prolonger par une balade dans la ville pour une ambiance plus locale."
+    },
+    {
+      "name": "Bica da Cana",
+      "zone": "Centre / Montagnes",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Bica da Cana viewpoint Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Ciel clair ou mer de nuages",
+      "description": "Belvédère d’altitude ouvert sur les grands reliefs du centre de l’île, parfois au-dessus d’une mer de nuages.",
+      "tips": "Prévoir une couche chaude même si la côte est ensoleillée."
+    },
+    {
+      "name": "Seixal – plage et piscines",
+      "zone": "Nord-Ouest",
+      "rating": 1,
+      "category": "Baignade",
+      "query": "Praia do Porto do Seixal Madeira",
+      "duration": "1 à 3 h",
+      "weather": "Mer calme, lumière du matin",
+      "description": "Plage de sable noir encadrée de falaises vertes, avec des piscines naturelles à proximité. L’un des paysages côtiers les plus photogéniques de l’île.",
+      "tips": "Arriver tôt pour stationner plus facilement. Prudence en cas de forte houle.",
+      "sunset": true
+    },
+    {
+      "name": "Cascata do Risco",
+      "zone": "Plateau de Paul da Serra",
+      "rating": 3,
+      "category": "Cascade",
+      "query": "Cascata do Risco Madeira",
+      "duration": "2 à 4 h avec la randonnée",
+      "weather": "Temps sec ou couvert, sans pluie forte",
+      "description": "Haute cascade nichée dans un cirque montagneux, souvent visitée avec la randonnée des 25 Fontes.",
+      "tips": "Sentiers parfois humides et glissants ; bonnes chaussures recommandées."
+    },
+    {
+      "name": "Cabo Girão",
+      "zone": "Funchal / Sud-Ouest",
+      "rating": 1,
+      "category": "Point de vue",
+      "query": "Cabo Girão Skywalk Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Bonne visibilité",
+      "description": "Belvédère célèbre pour sa plateforme vitrée suspendue au-dessus de l’une des plus hautes falaises maritimes d’Europe.",
+      "tips": "Peut être très fréquenté. Arriver tôt ou en fin de journée.",
+      "sunset": true
+    },
+    {
+      "name": "Ponta Delgada – côte et cascade",
+      "zone": "Nord",
+      "rating": 3,
+      "category": "Cascade",
+      "query": "Ponta Delgada Madeira waterfall viewpoint",
+      "duration": "45 min à 1 h 30",
+      "weather": "Temps sec, bonne visibilité",
+      "description": "Secteur côtier verdoyant avec vues sur les falaises et petites cascades après les périodes humides.",
+      "tips": "À combiner avec São Vicente ou São Cristóvão."
+    },
+    {
+      "name": "Miradouro de São Cristóvão",
+      "zone": "Nord",
+      "rating": 1,
+      "category": "Point de vue",
+      "query": "Miradouro de São Cristóvão Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Ciel dégagé",
+      "description": "Point de vue spectaculaire sur la côte nord, ses falaises sombres et les vagues de l’Atlantique.",
+      "tips": "Bonne halte pour déjeuner ou prendre un verre avec vue."
+    },
+    {
+      "name": "Rocha do Navio",
+      "zone": "Nord-Est",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Rocha do Navio Madeira",
+      "duration": "45 min à 2 h",
+      "weather": "Temps clair, vent modéré",
+      "description": "Belvédère plongeant sur une réserve naturelle, des îlots et une côte très découpée. Le téléphérique, lorsqu’il fonctionne, permet de descendre vers la mer.",
+      "tips": "Vérifier sur place l’ouverture du téléphérique."
+    },
+    {
+      "name": "Levada Nova / Moinho",
+      "zone": "Ouest",
+      "rating": 3,
+      "category": "Randonnée",
+      "query": "Levada Nova Moinho Madeira trail",
+      "duration": "3 à 5 h",
+      "weather": "Temps sec, faible risque d’orage",
+      "description": "Boucle de levadas connue pour ses passages taillés dans la falaise, ses cascades et ses vues sur les cultures en terrasses.",
+      "tips": "Lampe utile pour les passages sombres ; attention aux sections étroites et humides."
+    },
+    {
+      "name": "Monte Palace Tropical Garden",
+      "zone": "Funchal / Monte",
+      "rating": 1,
+      "category": "Jardin",
+      "query": "Monte Palace Tropical Garden Madeira",
+      "duration": "2 à 4 h",
+      "weather": "Tous temps sauf forte pluie",
+      "description": "Grand jardin tropical en terrasses, avec végétation exotique, bassins, art et vues sur Funchal.",
+      "tips": "Chaussures confortables : les allées sont pentues. Peut se combiner avec le téléphérique et les luges."
+    },
+    {
+      "name": "São Vicente",
+      "zone": "Nord",
+      "rating": 3,
+      "category": "Village",
+      "query": "São Vicente Madeira",
+      "duration": "1 à 3 h",
+      "weather": "Temps clair ou nuageux",
+      "description": "Village entouré de montagnes abruptes, avec une église pittoresque et une vallée très verte.",
+      "tips": "Bonne base pour explorer la côte nord et le plateau de Paul da Serra."
+    },
+    {
+      "name": "Ponta do Rosto",
+      "zone": "Est",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Miradouro da Ponta do Rosto Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Ciel clair, vent raisonnable",
+      "description": "Point de vue minéral sur les falaises et les couleurs volcaniques de la péninsule de São Lourenço.",
+      "tips": "Très exposé au vent. Idéal au lever du jour ou en fin d’après-midi."
+    },
+    {
+      "name": "Véu da Noiva",
+      "zone": "Nord-Ouest",
+      "rating": 3,
+      "category": "Cascade",
+      "query": "Miradouro do Véu da Noiva Madeira",
+      "duration": "20 à 40 min",
+      "weather": "Bonne visibilité",
+      "description": "Cascade descendant le long d’une falaise vers l’océan, visible depuis un belvédère routier.",
+      "tips": "Arrêt court et facile, parfait entre Seixal et São Vicente.",
+      "sunset": true
+    },
+    {
+      "name": "PR1 – Vereda do Areeiro",
+      "zone": "Centre / Montagnes",
+      "rating": 1,
+      "category": "Randonnée",
+      "query": "PR1 Vereda do Areeiro Madeira",
+      "duration": "4 à 8 h selon parcours",
+      "weather": "Ciel dégagé, vent faible",
+      "description": "Randonnée emblématique sur les crêtes entre les plus hauts sommets, avec tunnels, escaliers et passages vertigineux.",
+      "tips": "Vérifier impérativement l’état officiel du sentier avant le départ. Lampe frontale, eau et coupe-vent indispensables."
+    },
+    {
+      "name": "PR9 – Levada do Caldeirão Verde",
+      "zone": "Nord-Est",
+      "rating": 2,
+      "category": "Randonnée",
+      "query": "PR9 Levada do Caldeirão Verde Madeira",
+      "duration": "4 à 6 h",
+      "weather": "Temps sec ou couvert",
+      "description": "Longue levada fraîche et ombragée traversant tunnels, forêt humide et parois rocheuses jusqu’à une grande cascade.",
+      "tips": "Lampe indispensable. Sentier parfois étroit et humide."
+    },
+    {
+      "name": "Miradouro do Rancho",
+      "zone": "Sud-Ouest",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Miradouro do Rancho Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Bonne visibilité",
+      "description": "Belvédère dominant les falaises et les cultures en terrasses, avec un téléphérique panoramique à proximité.",
+      "tips": "À associer à Cabo Girão et Câmara de Lobos."
+    },
+    {
+      "name": "Cascata dos Anjos",
+      "zone": "Ouest",
+      "rating": 2,
+      "category": "Cascade",
+      "query": "Cascata dos Anjos Ponta do Sol Madeira",
+      "duration": "20 à 40 min",
+      "weather": "Temps sec, route ouverte",
+      "description": "Cascade célèbre tombant directement sur l’ancienne route côtière près de Ponta do Sol.",
+      "tips": "Ne pas stationner sous la chute et rester attentif à la circulation et aux éventuelles fermetures."
+    },
+    {
+      "name": "PR17 – Caminho do Pináculo e Folhadal",
+      "zone": "Centre / Montagnes",
+      "rating": 2,
+      "category": "Randonnée",
+      "query": "PR17 Caminho do Pináculo e Folhadal Madeira",
+      "duration": "6 à 9 h",
+      "weather": "Temps stable et sec",
+      "description": "Randonnée longue et exigeante entre levadas, forêt de lauriers et reliefs montagneux.",
+      "tips": "Réservée aux marcheurs entraînés. Vérifier l’ouverture et organiser la logistique de transport."
+    },
+    {
+      "name": "PR16 – Levada Fajã do Rodrigues",
+      "zone": "Nord",
+      "rating": 3,
+      "category": "Randonnée",
+      "query": "PR16 Levada Fajã do Rodrigues Madeira",
+      "duration": "3 à 4 h",
+      "weather": "Temps sec ou couvert",
+      "description": "Levada verdoyante comportant plusieurs tunnels, dont un particulièrement long, dans une ambiance humide et sauvage.",
+      "tips": "Lampe frontale indispensable ; prévoir un vêtement imperméable."
+    },
+    {
+      "name": "Pico do Areeiro",
+      "zone": "Centre / Montagnes",
+      "rating": 1,
+      "category": "Point de vue",
+      "query": "Pico do Areeiro Madeira",
+      "duration": "45 min à 2 h sans grande randonnée",
+      "weather": "Ciel dégagé, vent faible",
+      "description": "Sommet accessible par la route offrant une vue immédiate sur les crêtes centrales et souvent une mer de nuages.",
+      "tips": "Consulter les webcams avant de monter. Arriver tôt pour le lever du soleil et le stationnement."
+    },
+    {
+      "name": "25 Fontes",
+      "zone": "Plateau de Paul da Serra",
+      "rating": 1,
+      "category": "Randonnée",
+      "query": "PR6 25 Fontes Madeira",
+      "duration": "3 à 5 h",
+      "weather": "Temps sec ou couvert",
+      "description": "Randonnée très populaire vers un amphithéâtre de petites cascades et de sources au cœur de la laurisylve.",
+      "tips": "Très fréquentée : partir tôt. Sentiers humides, chaussures adaptées recommandées."
+    },
+    {
+      "name": "Fanal Forest",
+      "zone": "Plateau de Paul da Serra",
+      "rating": 1,
+      "category": "Forêt",
+      "query": "Fanal Forest Madeira",
+      "duration": "1 à 3 h",
+      "weather": "Brume légère ou ciel dégagé",
+      "description": "Forêt de vieux lauriers aux silhouettes tortueuses. La brume lui donne une atmosphère particulièrement mystérieuse.",
+      "tips": "Ne pas compter uniquement sur la brume : le site est aussi beau par temps clair. Respecter les animaux en liberté."
+    },
+    {
+      "name": "Ribeira da Janela",
+      "zone": "Nord-Ouest",
+      "rating": 1,
+      "category": "Plage",
+      "query": "Ribeira da Janela beach Madeira",
+      "duration": "45 min à 1 h 30",
+      "weather": "Temps sec, coucher de soleil",
+      "description": "Plage de galets face à des pitons rocheux surgissant de l’océan, très photogénique lorsque la lumière baisse.",
+      "tips": "Chaussures stables sur les galets et prudence près des vagues.",
+      "sunset": true
+    },
+    {
+      "name": "Achadas da Cruz",
+      "zone": "Nord-Ouest",
+      "rating": 1,
+      "category": "Téléphérique",
+      "query": "Achadas da Cruz Cable Car Madeira",
+      "duration": "2 à 4 h",
+      "weather": "Vent faible, temps sec",
+      "description": "Téléphérique très pentu descendant vers une fajã isolée, où un chemin longe les anciennes parcelles agricoles au pied de la falaise.",
+      "tips": "Vérifier l’ouverture et surtout le vent. Ne pas descendre trop tard."
+    },
+    {
+      "name": "Stairway to Heaven",
+      "zone": "Centre / Montagnes",
+      "rating": 1,
+      "category": "Randonnée",
+      "query": "Stairway to Heaven Pico do Areeiro Madeira",
+      "duration": "Inclus dans une randonnée",
+      "weather": "Ciel dégagé, vent faible",
+      "description": "Surnom donné à un passage spectaculaire d’escaliers sur les crêtes, souvent associé au secteur du Pico do Areeiro.",
+      "tips": "Passage exposé : éviter par vent fort ou brouillard dense."
+    },
+    {
+      "name": "Ponta de São Lourenço",
+      "zone": "Est",
+      "rating": 1,
+      "category": "Randonnée",
+      "query": "PR8 Ponta de São Lourenço Madeira",
+      "duration": "3 à 5 h",
+      "weather": "Temps sec, vent modéré",
+      "description": "Péninsule volcanique aride aux falaises multicolores, très différente du reste de Madère.",
+      "tips": "Peu d’ombre : eau, protection solaire et coupe-vent. Lever ou fin de journée pour la lumière.",
+      "sunset": true
+    },
+    {
+      "name": "Ninho da Manta",
+      "zone": "Centre / Montagnes",
+      "rating": 3,
+      "category": "Point de vue",
+      "query": "Miradouro Ninho da Manta Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Ciel dégagé",
+      "description": "Belvédère accessible depuis le Pico do Areeiro, offrant une vue plongeante sur les reliefs et les vallées.",
+      "tips": "Même sans faire toute la PR1, cette courte approche vaut le détour."
+    },
+    {
+      "name": "Miradouro do Guindaste",
+      "zone": "Nord-Est",
+      "rating": 2,
+      "category": "Point de vue",
+      "query": "Miradouro do Guindaste Madeira",
+      "duration": "30 à 60 min",
+      "weather": "Bonne visibilité",
+      "description": "Belvédère spectaculaire sur la côte nord-est, avec plateformes donnant l’impression d’avancer au-dessus de l’océan.",
+      "tips": "Très beau au lever du soleil ; attention au vent.",
+      "sunset": true
+    },
+    {
+      "name": "PR18 – Levada do Rei",
+      "zone": "Nord",
+      "rating": 1,
+      "category": "Randonnée",
+      "query": "PR18 Levada do Rei Madeira",
+      "duration": "3 à 4 h",
+      "weather": "Temps sec ou couvert",
+      "description": "Levada verdoyante menant vers une gorge boisée, avec passages sous les parois et végétation abondante.",
+      "tips": "Prévoir une protection contre l’eau ruisselante et des chaussures adhérentes."
+    },
+    {
+      "name": "Jardim do Mar",
+      "zone": "Ouest",
+      "rating": 2,
+      "category": "Village",
+      "query": "Jardim do Mar Madeira",
+      "duration": "1 à 2 h",
+      "weather": "Temps sec, coucher de soleil",
+      "description": "Village piétonnier en partie, accroché entre montagne et océan, apprécié pour ses ruelles, ses jardins et son ambiance paisible.",
+      "tips": "Stationner à l’entrée et descendre à pied jusqu’au front de mer.",
+      "sunset": true
+    },
+    {
+      "name": "Eira do Serrado",
+      "zone": "Centre / Curral das Freiras",
+      "rating": 2,
+      "category": "Point de vue",
+      "query": "Eira do Serrado Madeira",
+      "duration": "45 min à 1 h 30",
+      "weather": "Bonne visibilité",
+      "description": "Belvédère dominant le cirque montagneux de Curral das Freiras, accessible après une courte marche depuis le parking.",
+      "tips": "À combiner avec la visite du village en contrebas."
+    },
+    {
+      "name": "Praia de Machico",
+      "zone": "Est",
+      "rating": 1,
+      "category": "Baignade",
+      "query": "Praia de Machico, Madeira",
+      "duration": "1 à 3 h",
+      "weather": "Temps sec, mer calme et ciel dégagé",
+      "description": "Plage de sable située dans la baie de Machico, agréable pour une promenade, une baignade ou une halte en fin de journée.",
+      "tips": "Profiter de la promenade maritime et vérifier les conditions de baignade avant d’entrer dans l’eau.",
+      "sunset": true
+    }
+  ],
+  "activities": [
+    {
+      "name": "Observation des dauphins et cachalots",
+      "zone": "Calheta / Sud-Ouest",
+      "rating": 3,
+      "query": "Whale watching Calheta Madeira",
+      "description": "Sortie en mer au départ de Calheta pour rechercher dauphins, baleines et parfois tortues. Choisir un opérateur respectueux des animaux et réserver selon l’état de la mer."
+    },
+    {
+      "name": "Canyoning",
+      "zone": "Plusieurs secteurs",
+      "rating": 2,
+      "query": "Canyoning Madeira",
+      "description": "Activité encadrée dans les gorges et cascades de l’île. Le parcours doit être choisi selon votre niveau et les conditions hydrologiques."
+    },
+    {
+      "name": "Tyrolienne",
+      "zone": "À confirmer",
+      "rating": 2,
+      "query": "Zipline Madeira",
+      "description": "Activité à confirmer selon le prestataire et la zone exacte. Vérifier les horaires, limites de poids et conditions de vent."
+    },
+    {
+      "name": "Luges traditionnelles de Monte",
+      "zone": "Funchal / Monte",
+      "rating": 1,
+      "query": "Monte toboggan Madeira",
+      "description": "Descente emblématique en panier d’osier conduite par les carreiros depuis Monte. Expérience touristique mais typique."
+    },
+    {
+      "name": "Surf",
+      "zone": "Ouest / Nord",
+      "rating": 3,
+      "query": "Surf Madeira Paul do Mar",
+      "description": "Les spots de Paul do Mar, Jardim do Mar et certaines plages du nord sont réputés. Pour débuter, passer par une école et choisir un spot adapté à la houle."
+    }
+  ]
+}
