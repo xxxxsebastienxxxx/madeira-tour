@@ -139,7 +139,10 @@
   <section class="controls card">
     <input id="search" type="search" placeholder="Rechercher un lieu, une cascade, une randonnée…">
     <select id="zoneFilter"><option value="">Toutes les zones</option></select>
-    <select id="categoryFilter"><option value="">Tous les types</option></select>
+    <select id="categoryFilter">
+  <option value="">Tous les types</option>
+  <option value="sunset">🌅 Coucher de soleil</option>
+</select>
     <select id="ratingFilter">
       <option value="">Toutes les priorités</option>
       <option value="3">⭐⭐⭐ Priorité maximale</option>
@@ -173,6 +176,6 @@
 
 <footer>Madeira Companion · Les notes suivent votre règle : ⭐⭐⭐ = le plus important.</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app-v7.js?v=7"></script>
+$('#categoryFilter').innerHTML=`<option value="">Tous les types</option>${categories.map(c=>`<option>${c}</option>`).join('')}<option value="sunset">🌅 Coucher de soleil</option>`;
 </body>
 </html>
