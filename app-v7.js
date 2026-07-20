@@ -18,9 +18,26 @@ async function init(){
   fillFilters(); render(); renderActivities(); loadWeather(); initMap();
   if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=7');
 }
-function fillFilters(){
-  [...new Set(state.places.map(p=>p.zone))].sort().forEach(z=>$('#zoneFilter').insertAdjacentHTML('beforeend',`<option>${z}</option>`));
-  [...new Set(state.places.map(p=>p.category))].sort().forEach(c=>$('#categoryFilter').insertAdjacentHTML('beforeend',`<option>${c}</option>`));
+function fillFilters() {
+  const zoneFilter = document.querySelector("#zoneFilter");
+  const categoryFilter = document.querySelector("#categoryFilter");
+
+  const zones = [...new Set(state.places.map(p => p.zone))]
+    .filter(Boolean)
+    .sort();
+
+  const categories = [...new Set(state.places.map(p => p.category))]
+    .filter(Boolean)
+    .sort();
+
+  zoneFilter.innerHTML =
+    '<option value="">Toutes les zones</option>' +
+    zones.map(z => `<option value="${z}">${z}</option>`).join("");
+
+  categoryFilter.innerHTML =
+    '<option value="">Tous les types</option>' +
+    categories.map(c => `<option value="${c}">${c}</option>`).join("") +
+    '<option value="sunset">🌅 Coucher de soleil</option>';
 }
 function filtered(){
   const q=$('#search').value.toLowerCase().trim(),z=$('#zoneFilter').value,c=$('#categoryFilter').value,r=$('#ratingFilter').value;
