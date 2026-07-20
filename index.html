@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <title>Madeira Companion</title>
+  <link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="leaflet-local.css?v=5">
+  <link rel="stylesheet" href="styles-v7.css?v=7">
+</head>
+<body>
+<header class="hero">
+  <div>
+    <p class="eyebrow">Votre guide personnel</p>
+    <h1>Madeira Companion 🇵🇹</h1>
+    <p>Choisissez une zone selon la météo, puis retrouvez vos lieux classés par intérêt.</p>
+  </div>
+  <button id="installBtn" class="secondary" hidden>Installer l’app</button>
+</header>
+
+<nav class="quick-nav" aria-label="Navigation principale">
+  <a href="#voyage">✈️ Voyage</a>
+  <a href="#map">🗺️ Carte</a>
+  <a href="#weatherGrid">☀️ Météo</a>
+  <a href="#zones">📍 Lieux</a>
+</nav>
+
+<main>
+  <section id="voyage" class="travel-section card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Vos informations utiles</p>
+        <h2>Voyage</h2>
+      </div>
+    </div>
+    <p class="privacy-note">Les billets et documents restent enregistrés uniquement sur cet appareil et ne sont pas publiés sur GitHub.</p>
+
+    <div class="travel-grid simple-travel-grid">
+      <article class="travel-card">
+        <h3>✈️ Billets de Sébastien</h3>
+        <p>Ajoutez les billets en PDF ou en photo.</p>
+        <label class="full file-picker">Ajouter des billets
+          <input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="flight-sebastien">
+        </label>
+        <div class="document-list" data-doc-list="flight-sebastien"></div>
+      </article>
+
+      <article class="travel-card">
+        <h3>✈️ Billets d’Audrey</h3>
+        <p>Ajoutez les billets en PDF ou en photo, indépendamment de ceux de Sébastien.</p>
+        <label class="full file-picker">Ajouter des billets
+          <input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="flight-audrey">
+        </label>
+        <div class="document-list" data-doc-list="flight-audrey"></div>
+      </article>
+
+      <article class="travel-card">
+        <h3>🏠 Airbnb 1</h3>
+        <form class="travel-form" data-record="airbnb-1">
+          <label>Nom du logement<input name="name" placeholder="Ex. Maison de Santana"></label>
+          <label class="full">Adresse exacte<input name="address" placeholder="Rue, ville, Madère"></label>
+          <div class="location-actions full" data-location-actions="airbnb-1"></div>
+          <p class="location-status full" data-location-status="airbnb-1"></p>
+        </form>
+      </article>
+
+      <article class="travel-card">
+        <h3>🏠 Airbnb 2</h3>
+        <form class="travel-form" data-record="airbnb-2">
+          <label>Nom du logement<input name="name" placeholder="Ex. Appartement de Funchal"></label>
+          <label class="full">Adresse exacte<input name="address" placeholder="Rue, ville, Madère"></label>
+          <div class="location-actions full" data-location-actions="airbnb-2"></div>
+          <p class="location-status full" data-location-status="airbnb-2"></p>
+        </form>
+      </article>
+
+      <article class="travel-card car-card">
+        <h3>🚗 Location de voiture</h3>
+        <form class="travel-form" data-record="car-rental">
+          <label>Nom du loueur<input name="company" placeholder="Ex. Sixt, Europcar…"></label>
+          <label class="full">Adresse de l’agence<input name="address" placeholder="Adresse exacte de l’agence"></label>
+          <label class="full file-picker">Ajouter le contrat ou la réservation
+            <input class="document-input" type="file" multiple accept="application/pdf,image/*" data-owner="car-rental">
+          </label>
+          <div class="document-list full" data-doc-list="car-rental"></div>
+          <div class="location-actions full" data-location-actions="car-rental"></div>
+          <p class="location-status full" data-location-status="car-rental"></p>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <section class="map-section card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Tous vos lieux en un coup d’œil</p>
+        <h2>Carte des points d’intérêt</h2>
+      </div>
+      <button id="fitMap" class="secondary" type="button">Voir toute l’île</button>
+    </div>
+
+    <div class="priority-callout">
+      <strong>Votre classement :</strong> ⭐⭐⭐ = fort intérêt · ⭐⭐ = intérêt moyen · ⭐ = intérêt plus faible
+    </div>
+    <div class="map-toolbar" aria-label="Filtres de la carte">
+      <button class="map-kind-filter active" type="button" data-map-kind="all">Tous</button>
+      <button class="map-kind-filter" type="button" data-map-kind="place">📍 Lieux</button>
+      <button class="map-kind-filter" type="button" data-map-kind="activity">🎯 Activités</button>
+      <span class="toolbar-separator" aria-hidden="true"></span>
+      <button class="map-filter active" type="button" data-map-rating="">Toutes priorités</button>
+      <button class="map-filter" type="button" data-map-rating="3">⭐⭐⭐ Fort intérêt</button>
+      <button class="map-filter" type="button" data-map-rating="2">⭐⭐</button>
+      <button class="map-filter" type="button" data-map-rating="1">⭐</button>
+    </div>
+
+    <div id="map" role="region" aria-label="Carte interactive de Madère"></div>
+    <div id="mapStatus" class="map-status" aria-live="polite">
+      Préparation de la carte…
+    </div>
+    <small>
+      Les positions sont recherchées à partir du nom des lieux lors de la première ouverture,
+      puis mémorisées sur votre téléphone. Une connexion est nécessaire pour le fond de carte.
+    </small>
+  </section>
+
+  <section class="weather card">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Aide à la décision</p>
+        <h2>Météo par secteur</h2>
+      </div>
+      <button id="refreshWeather" class="secondary">Actualiser</button>
+    </div>
+    <div id="weatherGrid" class="weather-grid"><p>Chargement de la météo…</p></div>
+    <small>Prévisions indicatives via Open‑Meteo. En montagne, vérifiez aussi les webcams et l’état officiel des sentiers.</small>
+  </section>
+
+  <section class="controls card">
+    <input id="search" type="search" placeholder="Rechercher un lieu, une cascade, une randonnée…">
+    <select id="zoneFilter"><option value="">Toutes les zones</option></select>
+    <select id="categoryFilter"><option value="">Tous les types</option></select>
+    <select id="ratingFilter">
+      <option value="">Toutes les priorités</option>
+      <option value="3">⭐⭐⭐ Priorité maximale</option>
+      <option value="2">⭐⭐ À privilégier</option>
+      <option value="1">⭐ Complément</option>
+    </select>
+    <div class="check-row">
+      <label class="check"><input id="favoritesOnly" type="checkbox"><span>Favoris seulement</span></label>
+      <label class="check"><input id="hideDone" type="checkbox"><span>Masquer les lieux faits</span></label>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">Vos sélections</p><h2 id="resultTitle">Lieux par zone</h2></div>
+      <span id="count" class="pill"></span>
+    </div>
+    <div id="zones"></div>
+  </section>
+
+  <section class="activities">
+    <div class="section-head"><div><p class="eyebrow">À réserver ou vérifier</p><h2>Activités</h2></div></div>
+    <div id="activitiesGrid" class="grid"></div>
+  </section>
+</main>
+
+<dialog id="detailDialog">
+  <button class="dialog-close" aria-label="Fermer">×</button>
+  <div id="dialogContent"></div>
+</dialog>
+
+<footer>Madeira Companion · Les notes suivent votre règle : ⭐⭐⭐ = le plus important.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app-v7.js?v=7"></script>
+</body>
+</html>
